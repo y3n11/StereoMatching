@@ -11,10 +11,8 @@ G2C(Mat disp,int param)
 {
 	Mat Hsv = Mat::zeros(disp.rows,disp.cols,CV_8UC3);
 	for(int i = 0 ; i < disp.rows; i++)
-		for(int j = 0; j < disp.cols; j++)
-		{
-			if(disp.at<uchar>(i,j) != 0)
-			{
+		for(int j = 0; j < disp.cols; j++){
+			if(disp.at<uchar>(i,j) != 0){
 				Hsv.at<Vec3b>(i,j)[0] = disp.at<uchar>(i,j) * param;
 				Hsv.at<Vec3b>(i,j)[1] = 255;
 				Hsv.at<Vec3b>(i,j)[2] = 255;
@@ -35,8 +33,7 @@ Display(Mat *img,char* m)
 	imwrite("../images/disp.jpg", *img);
 	namedWindow( "window", WINDOW_NORMAL );
     imshow( "window", *img );
-	while(1)
-	{
+	for(;;){
 		key = cvWaitKey(0);
 		if (key == -1)
 			break;
@@ -72,10 +69,8 @@ getMin(Mat row,int col)
 {
 	int vmin = row.at<int>(0,col);
 	int imin = 0;
-	for(int i = 1; i < DISP ; i++)
-	{
-		if (vmin > row.at<int>(i,col))
-		{
+	for(int i = 1; i < DISP ; i++){
+		if (vmin > row.at<int>(i,col)){
 			vmin = row.at<int>(i,col);
 			imin = i;
 		}
@@ -88,8 +83,7 @@ LBP(Mat img, Point2i p, int w_size)
 {
 	int start,stop,i,j,n = 0;
 	int* bits = new int[w_size * w_size - 1];
-	while(w_size > 0)
-	{
+	while(w_size > 0){
 		start = -(w_size )/2;
 		stop  = w_size /2 ;
 
@@ -131,8 +125,7 @@ LBP(Mat imgl,Mat imgr,Point2i pl,Point2i pr,int w_size)
 	int diff = 0;
 	int vl = 0;
 	int vr = 0;
-	for(int i = 0; i < w_size * w_size ; i ++)
-	{
+	for(int i = 0; i < w_size * w_size ; i ++){
 		vl += *(tl + i)*pow(2,i);
 		vr += *(tr + i)*pow(2,i);
 	}
@@ -163,8 +156,7 @@ Ideal(Mat img,Point2i p)
     meanStdDev(b,mean,bstddev,cv::Mat());
     meanStdDev(b,mean,stddev,cv::Mat());
 	b.release();
-    while (abs(stddev[0] - bstddev[0]) <= 40/*25*/)
-    {
+    while (abs(stddev[0] - bstddev[0]) <= 40/*25*/){
         if(window_size/2 >= p.x || window_size/2 >= p.y || window_size >= WINDOW_SIZE)
             return window_size;
         window_size += 2;
