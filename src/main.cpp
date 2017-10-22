@@ -1,8 +1,8 @@
 #include "StereoMatching.h"
 
-int WINDOW_SIZE;
-int DISP;
-int iW;
+unsigned int WINDOW_SIZE;
+unsigned int DISP;
+unsigned int iW;
 
 using namespace std;
 using namespace cv;
@@ -11,13 +11,12 @@ int
 main(int argc,
 	char** argv)
 {
-	int WINDOW_SIZE;
+	unsigned int WINDOW_SIZE;
 
 	Mat img1,img2,row,disp;
 	int (*Method)(Mat,Mat,Point2i,Point2i,int);
 
-	if(argc < 6)
-	{
+	if(argc < 6){
 		cout <<"Usage : "<<argv[0]<<"  <image-file-name-1> <image-file-name-2> <Method> <WINDOW_SIZE> <DISP>"<<endl;
 		exit(0);
 	}
@@ -31,8 +30,7 @@ main(int argc,
 	else if(string(argv[3]) == "SSD")
 		Method = &SSD;
 	
-	else
-	{
+	else{
 		cout << "Unknown Method" << endl;
 		exit(0);
 	}
@@ -48,12 +46,10 @@ main(int argc,
 		return -1;
 
 	disp = Mat(img1.rows,img1.cols,CV_8UC1,Scalar::all(255));
-	for(int l = WINDOW_SIZE/2; l < img1.rows - WINDOW_SIZE/2; l++)
-	{
+	for(int l = WINDOW_SIZE/2; l < img1.rows - WINDOW_SIZE/2; l++){
 		row = Mat(DISP,img1.cols,CV_32S,Scalar::all(255));
 		for(int i = WINDOW_SIZE/2 ; i < img1.cols - WINDOW_SIZE/2; i++)
-			for(int j = 0; j < DISP ; j++)
-			{
+			for(int j = 0; j < DISP ; j++){
 				if((i+j) >= (img1.cols - WINDOW_SIZE /2) )
 					break;
 
