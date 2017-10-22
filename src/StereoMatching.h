@@ -26,12 +26,12 @@ int Ideal(Mat,Point2i);
 Mat crop(Mat,Point2i,int);
 
 
-extern int WINDOW_SIZE;
-extern int DISP;
-extern int BETA;
-extern int iW;
+extern unsigned int WINDOW_SIZE;
+extern unsigned int DISP;
+extern unsigned int BETA;
+extern unsigned int iW;
 
-extern int gDisp_dim;
-extern int gNc;
+extern unsigned int gDisp_dim;
+extern unsigned int gNc;
 
 #endif
