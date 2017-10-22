@@ -4,9 +4,6 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
-#include <iostream>
-#include <string>
-#include <cstdio>
 #include <cstdlib>
 #include <opencv2/calib3d.hpp>
 #include <opencv2/core/core.hpp>
